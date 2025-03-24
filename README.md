@@ -22,6 +22,6 @@ Si estas interesado en adquirir el sistema o tienes alguna pregunta, no dudes en
 ## 💻  Panel de Control
 
 ### boton de descarga 01
-![File-Upload01](assets/img/download-01.png)
+![File-Upload01](assets/img/donwload-01.png)
 ### boton de descarga 02
-![File-Upload02](assets/img/download-02.png)
+![File-Upload02](assets/img/donwload-01.png)
