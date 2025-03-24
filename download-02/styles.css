@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    perspective: 1000px;
+}
+
+.download-btn {
+    position: relative;
+    padding: 18px 45px;
+    background: linear-gradient(145deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 5px 10px rgba(255, 255, 255, 0.1),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+.download-btn:hover {
+    transform: translateY(-5px) rotateX(15deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 5px 10px rgba(255, 255, 255, 0.15),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.download-btn:active {
+    transform: translateY(2px) rotateX(5deg);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.btn-icon {
+    position: relative;
+    z-index: 2;
+    margin-left: 12px;
+    transition: transform 0.3s ease;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particles::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 
+        20px -15px 0 white,
+        -20px -30px 0 white,
+        10px 25px 0 white,
+        -15px 15px 0 white,
+        25px 5px 0 white;
+    transform: translate(-50%, -50%);
+    animation: particles 3s infinite;
+}
+
+@keyframes particles {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+    }
+}
+
+.shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+}
+
+.download-btn:hover .shine {
+    left: 150%;
+}
+
+.hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.download-btn:hover .hover-effect {
+    opacity: 1;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 0 60px 60px;
+    transition: width 0.4s ease;
+}
+
+/* Efectos durante la descarga */
+.download-btn.downloading {
+    animation: pulse 1.5s infinite;
+}
+
+.download-btn.downloading .btn-text {
+    transform: translateX(-10px);
+}
+
+.download-btn.downloading .btn-icon {
+    animation: bounce 0.8s infinite;
+}
+
+.download-btn.downloading .particles::before {
+    animation: particles 1.5s infinite;
+}
+
+.download-btn.downloading .progress-bar {
+    width: 100%;
+    animation: progressPulse 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateY(-5px) scale(1);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+@keyframes progressPulse {
+    0% {
+        opacity: 1;
+        height: 4px;
+    }
+    50% {
+        opacity: 0.7;
+        height: 6px;
+    }
+    100% {
+        opacity: 1;
+        height: 4px;
+    }
+}
+
+.status-message {
+    margin-top: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.status-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto de confeti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    opacity: 0;
+    animation: confetti 3s ease-in-out;
+    z-index: 10;
+}
+
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(300px) rotate(720deg);
+        opacity: 0;
+    }
+}

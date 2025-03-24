@@ -1,0 +1,124 @@
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.download-container {
+    text-align: center;
+}
+
+.download-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:active {
+    transform: translateY(1px);
+}
+
+.btn-text {
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 0 0 50px 50px;
+    transition: width 0.3s ease;
+}
+
+.download-btn:hover .btn-icon {
+    transform: translateY(2px);
+}
+
+.download-btn:hover .btn-progress {
+    width: 100%;
+}
+
+/* Animación de descarga */
+.download-btn.downloading {
+    pointer-events: none;
+}
+
+.download-btn.downloading .btn-text {
+    margin-right: 15px;
+}
+
+.download-btn.downloading .btn-icon {
+    animation: downloadBounce 0.5s infinite alternate;
+}
+
+.download-btn.downloading .btn-progress {
+    width: 100%;
+    animation: progressPulse 1.5s infinite;
+}
+
+@keyframes downloadBounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(5px);
+    }
+}
+
+@keyframes progressPulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.download-message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.download-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
